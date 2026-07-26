@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import logoImg from "@assets/y2kdepot-logo.png";
 import { Link } from 'wouter';
 import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
-import logoImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_54_47_ص_1785029957644.png";
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -55,7 +55,7 @@ export default function Navbar() {
           {/* Logo — absolutely centered on mobile, flex-centered on desktop */}
           <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:flex-1 md:w-1/3 flex justify-center">
             <Link href="/" className="flex items-center justify-center">
-              <img src={logoImg} alt="PELTSCLUB Logo" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
+              <img src={logoImg} alt="Y2K DEPOT Logo" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
             </Link>
           </div>
 
@@ -84,7 +84,7 @@ export default function Navbar() {
             className="fixed inset-0 z-50 bg-[#0a0a0a] flex flex-col"
           >
             <div className="flex items-center justify-between p-6 border-b border-[#222]">
-              <img src={logoImg} alt="PELTSCLUB" className="h-10 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
+              <img src={logoImg} alt="Y2K DEPOT" className="h-10 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
               <button onClick={() => setMobileMenuOpen(false)} className="text-white p-2">
                 <X className="w-8 h-8" />
               </button>
