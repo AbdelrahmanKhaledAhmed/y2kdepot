@@ -26,9 +26,13 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-          isScrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#333]' : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 w-full z-40 border-b"
+        style={{
+          backgroundColor: isScrolled ? 'rgba(10,10,10,0.88)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(14px)' : 'none',
+          borderColor: isScrolled ? 'rgba(60,60,60,0.8)' : 'transparent',
+          transition: 'background-color 400ms ease, backdrop-filter 400ms ease, border-color 400ms ease',
+        }}
       >
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between relative">
           {/* Mobile Menu Toggle */}
