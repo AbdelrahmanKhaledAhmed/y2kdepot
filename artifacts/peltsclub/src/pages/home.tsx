@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import Collection from '@/components/sections/Collection';
 import BrandStatement from '@/components/sections/BrandStatement';
+import CartDrawer from '@/components/cart/CartDrawer';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Collection />
       <BrandStatement />
       <Footer />
+      <CartDrawer />
     </main>
   );
 }
