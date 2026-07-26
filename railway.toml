@@ -1,0 +1,7 @@
+[build]
+buildCommand = "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/peltsclub run build"
+
+[deploy]
+startCommand = "pnpm --filter @workspace/peltsclub run serve"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
