@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import logoImg from "@assets/y2kdepot-logo.png";
 import { Link } from 'wouter';
 import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import logoImg from "@assets/y2kdepot-logo.png";
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCart } from '@/lib/cart';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { count, openCart } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,10 +65,10 @@ export default function Navbar() {
           <div className="flex items-center justify-end gap-4 md:gap-6 text-white md:w-1/3 ml-auto md:ml-0 z-10">
             <button className="hover:text-[#c0c0c0] transition-colors"><Search className="w-5 h-5" /></button>
             <button className="hidden md:block hover:text-[#c0c0c0] transition-colors"><User className="w-5 h-5" /></button>
-            <button className="hover:text-[#c0c0c0] transition-colors relative">
+            <button onClick={openCart} className="hover:text-[#c0c0c0] transition-colors relative">
               <ShoppingBag className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                0
+                {count}
               </span>
             </button>
           </div>
