@@ -1,18 +1,23 @@
 import { motion } from 'framer-motion';
-import beltImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_47_30_ص_1785029551981.png";
+import beltImgLandscape from "@assets/ChatGPT_Image_26_يوليو_2026،_03_47_30_ص_1785029551981.png";
+import beltImgPortrait from "@assets/ChatGPT_Image_26_يوليو_2026،_04_20_30_ص_1785030178794.png";
 
 export default function Hero() {
   return (
     <section className="relative h-[100dvh] w-full flex items-center justify-start overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image — portrait on mobile, landscape on desktop */}
       <div className="absolute inset-0 z-0 bg-black">
-        <img 
-          src={beltImg} 
-          alt="PELTSCLUB Hero" 
-          className="w-full h-full object-cover opacity-70"
+        <img
+          src={beltImgPortrait}
+          alt="PELTSCLUB Hero"
+          className="block md:hidden w-full h-full object-cover object-center opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/50 to-transparent"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        <img
+          src={beltImgLandscape}
+          alt="PELTSCLUB Hero"
+          className="hidden md:block w-full h-full object-cover opacity-70"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 md:bg-gradient-to-r md:from-[#0a0a0a]/90 md:via-[#0a0a0a]/50 md:to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 md:pt-20">

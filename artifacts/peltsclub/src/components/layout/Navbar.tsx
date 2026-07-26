@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between relative">
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden text-white p-2 -ml-2"
+            className="md:hidden text-white p-2 -ml-2 z-10"
             onClick={() => setMobileMenuOpen(true)}
           >
             <Menu className="w-6 h-6" />
@@ -48,15 +48,15 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Logo */}
-          <div className="flex-1 md:w-1/3 flex justify-center">
+          {/* Logo — absolutely centered on mobile, flex-centered on desktop */}
+          <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:flex-1 md:w-1/3 flex justify-center">
             <Link href="/" className="flex items-center justify-center">
               <img src={logoImg} alt="PELTSCLUB Logo" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
             </Link>
           </div>
 
           {/* Icons */}
-          <div className="flex items-center justify-end gap-4 md:gap-6 text-white w-1/3">
+          <div className="flex items-center justify-end gap-4 md:gap-6 text-white md:w-1/3 ml-auto md:ml-0 z-10">
             <button className="hover:text-[#c0c0c0] transition-colors"><Search className="w-5 h-5" /></button>
             <button className="hidden md:block hover:text-[#c0c0c0] transition-colors"><User className="w-5 h-5" /></button>
             <button className="hover:text-[#c0c0c0] transition-colors relative">
