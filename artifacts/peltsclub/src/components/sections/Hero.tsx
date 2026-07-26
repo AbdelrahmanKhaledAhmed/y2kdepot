@@ -63,16 +63,18 @@ export default function Hero() {
 
           {/* CTA */}
           <button
-            onClick={() =>
-              document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })
-            }
+            onClick={() => {
+              const el = document.getElementById('collection');
+              if (el) {
+                const offset = 100;
+                const targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top: targetY, left: 0, behavior: 'smooth' });
+              }
+            }}
             className="group relative px-8 py-4 md:px-8 md:py-4 border border-white text-white font-bold tracking-[0.25em] transition-all hover:bg-white hover:text-black text-sm active:scale-95"
           >
             <span className="flex items-center gap-3">
               SHOP NOW
-              <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-                ↗
-              </span>
             </span>
           </button>
         </motion.div>
