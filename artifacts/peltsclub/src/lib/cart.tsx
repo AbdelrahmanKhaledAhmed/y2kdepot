@@ -1,14 +1,21 @@
 import { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react';
 
-export interface Product {
+export interface CartItem {
+  cartId: string;
   id: number;
   name: string;
   price: number;
   image: string;
+  size: string;
+  qty: number;
 }
 
-interface CartItem extends Product {
-  qty: number;
+interface AddItemInput {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  size: string;
 }
 
 interface CartContextValue {
@@ -16,9 +23,9 @@ interface CartContextValue {
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (product: Product, qty?: number) => void;
-  removeItem: (id: number) => void;
-  updateQty: (id: number, qty: number) => void;
+  addItem: (product: AddItemInput, qty?: number) => void;
+  removeItem: (cartId: string) => void;
+  updateQty: (cartId: string, qty: number) => void;
   clearCart: () => void;
   total: number;
   count: number;
@@ -33,27 +40,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const openCart = useCallback(() => setIsOpen(true), []);
   const closeCart = useCallback(() => setIsOpen(false), []);
 
-  const addItem = useCallback((product: Product, qty: number = 1) => {
+  const addItem = useCallback((product: AddItemInput, qty: number = 1) => {
+    const cartId = `${product.id}-${product.size}`;
     setItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+      const existing = prev.find((item) => item.cartId === cartId);
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + qty } : item
+          item.cartId === cartId ? { ...item, qty: item.qty + qty } : item
         );
       }
-      return [...prev, { ...product, qty }];
+      return [...prev, { ...product, cartId, qty }];
     });
   }, []);
 
-  const removeItem = useCallback((id: number) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
+  const removeItem = useCallback((cartId: string) => {
+    setItems((prev) => prev.filter((item) => item.cartId !== cartId));
   }, []);
 
-  const updateQty = useCallback((id: number, qty: number) => {
+  const updateQty = useCallback((cartId: string, qty: number) => {
     setItems((prev) =>
       qty <= 0
-        ? prev.filter((item) => item.id !== id)
-        : prev.map((item) => (item.id === id ? { ...item, qty } : item))
+        ? prev.filter((item) => item.cartId !== cartId)
+        : prev.map((item) => (item.cartId === cartId ? { ...item, qty } : item))
     );
   }, []);
 
