@@ -46,33 +46,34 @@ export default function CartDrawer() {
               ) : (
                 <div className="flex flex-col gap-6">
                   {items.map((item) => (
-                    <div key={item.id} className="flex gap-4">
+                    <div key={item.cartId} className="flex gap-4">
                       <div className="w-20 h-24 bg-[#111] border border-[#222] overflow-hidden flex-shrink-0">
                         <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 flex flex-col justify-between">
                         <div>
                           <h3 className="text-sm font-bold tracking-wider text-white mb-1">{item.name}</h3>
+                          <p className="text-[#666] text-xs tracking-widest mb-1">SIZE {item.size}</p>
                           <p className="text-[#999999] text-sm tracking-widest">{item.price} EGP</p>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center border border-[#333]">
                             <button
-                              onClick={() => updateQty(item.id, item.qty - 1)}
+                              onClick={() => updateQty(item.cartId, item.qty - 1)}
                               className="p-1.5 text-white hover:bg-[#222] transition-colors"
                             >
                               <Minus className="w-3 h-3" />
                             </button>
                             <span className="px-3 text-sm text-white">{item.qty}</span>
                             <button
-                              onClick={() => updateQty(item.id, item.qty + 1)}
+                              onClick={() => updateQty(item.cartId, item.qty + 1)}
                               className="p-1.5 text-white hover:bg-[#222] transition-colors"
                             >
                               <Plus className="w-3 h-3" />
                             </button>
                           </div>
                           <button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeItem(item.cartId)}
                             className="text-xs text-[#666] hover:text-white tracking-widest transition-colors"
                           >
                             REMOVE
