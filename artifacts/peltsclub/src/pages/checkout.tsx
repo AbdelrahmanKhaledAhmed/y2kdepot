@@ -127,14 +127,14 @@ export default function Checkout() {
           <h2 className="text-xl font-serif mb-6 tracking-wide">ORDER SUMMARY</h2>
           <div className="flex flex-col gap-5 border-b border-[#222] pb-6 mb-6">
             {items.map((item) => (
-              <div key={item.id} className="flex gap-4">
+              <div key={item.cartId} className="flex gap-4">
                 <div className="w-16 h-20 bg-[#111] border border-[#222] overflow-hidden flex-shrink-0">
                   <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 flex justify-between">
                   <div>
                     <h3 className="text-sm font-bold tracking-wider mb-1">{item.name}</h3>
-                    <p className="text-[#666] text-xs tracking-widest">QTY {item.qty}</p>
+                    <p className="text-[#666] text-xs tracking-widest">SIZE {item.size} · QTY {item.qty}</p>
                   </div>
                   <p className="text-sm text-[#999999]">{item.price * item.qty} EGP</p>
                 </div>
