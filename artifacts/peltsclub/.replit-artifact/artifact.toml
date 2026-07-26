@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "PELTSCLUB"
+version = "1.0.0"
+id = "artifacts/peltsclub"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24051
+
+[services.development]
+run = "pnpm --filter @workspace/peltsclub run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/peltsclub", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/peltsclub/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24051"
+BASE_PATH = "/"
