@@ -28,7 +28,7 @@ const products = [
 
 export default function Collection() {
   return (
-    <section className="py-20 md:py-32 bg-[#0a0a0a]">
+    <section id="collection" className="py-20 md:py-32 bg-[#0a0a0a]">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <motion.div
@@ -36,7 +36,6 @@ export default function Collection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[#c0c0c0] text-sm font-bold tracking-[0.2em] mb-4 block">✦ TRENDING NOW</span>
             <h2 className="text-5xl md:text-7xl font-serif text-white">OUR COLLECTION</h2>
           </motion.div>
           <motion.a

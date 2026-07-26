@@ -43,7 +43,10 @@ export default function Hero() {
             Y2K inspired belts for the new generation.
           </p>
           
-          <button className="group relative px-6 py-3 md:px-8 md:py-4 border border-white text-white font-bold tracking-[0.2em] overflow-hidden transition-all hover:bg-white hover:text-black text-sm md:text-base">
+          <button
+            onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group relative px-6 py-3 md:px-8 md:py-4 border border-white text-white font-bold tracking-[0.2em] overflow-hidden transition-all hover:bg-white hover:text-black text-sm md:text-base"
+          >
             <span className="relative z-10 flex items-center gap-2">
               SHOP NOW 
               <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
