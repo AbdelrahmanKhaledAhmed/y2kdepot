@@ -1,27 +1,44 @@
 import { motion } from 'framer-motion';
-import logoImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_54_47_ص_1785029957644.png";
-import beltImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_47_30_ص_1785029551981.png";
+import p1 from "@assets/p1.png";
+import p2 from "@assets/p2.png";
+import p3 from "@assets/p3.png";
+import p4 from "@assets/p4.png";
+import p5 from "@assets/p5.png";
 
 const products = [
   {
     id: 1,
     name: "PELTSCLUB LOGO BELT",
     price: "650 EGP",
-    image: logoImg,
+    image: p1,
     isNew: true,
   },
   {
     id: 2,
     name: "OVAL Y2K BELT",
     price: "650 EGP",
-    image: beltImg,
+    image: p2,
     isNew: true,
   },
   {
     id: 3,
     name: "TRIBAL FLAME BELT",
     price: "650 EGP",
-    image: null,
+    image: p3,
+    isNew: true,
+  },
+  {
+    id: 4,
+    name: "CHAIN LINK BELT",
+    price: "650 EGP",
+    image: p4,
+    isNew: true,
+  },
+  {
+    id: 5,
+    name: "STUDDED Y2K BELT",
+    price: "650 EGP",
+    image: p5,
     isNew: true,
   }
 ];
@@ -72,22 +89,11 @@ export default function Collection() {
                     QUICK ADD
                   </button>
                 </div>
-                {product.image ? (
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${
-                      product.id === 1
-                        ? 'object-contain p-8'
-                        : 'object-cover'
-                    }`}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center text-[#333] font-serif p-8 text-center bg-[#0a0a0a]">
-                    <span className="text-4xl block mb-4">✦</span>
-                    <span className="text-2xl tracking-widest opacity-50">TRIBAL FLAME</span>
-                  </div>
-                )}
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
               <div className="px-1">
                 <h3 className="text-lg font-bold tracking-wider text-white mb-2">{product.name}</h3>
