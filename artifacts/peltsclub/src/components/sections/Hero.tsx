@@ -10,7 +10,7 @@ export default function Hero() {
         <img
           src={beltImgPortrait}
           alt="PELTSCLUB Hero"
-          className="block md:hidden w-full h-full object-cover object-center opacity-90"
+          className="block md:hidden w-full h-full object-cover opacity-90" style={{ transform: 'translateY(-12%)', transformOrigin: 'top center' }}
         />
         <img
           src={beltImgLandscape}
