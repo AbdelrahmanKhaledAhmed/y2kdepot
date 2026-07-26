@@ -17,7 +17,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'SHOP', href: '#' },
+    { name: 'SHOP', href: '#collection' },
     { name: 'COLLECTIONS', href: '#' },
     { name: 'ABOUT US', href: '#' },
     { name: 'CONTACT', href: '#' },
