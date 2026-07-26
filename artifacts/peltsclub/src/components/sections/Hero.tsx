@@ -78,12 +78,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Slide Dots */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 md:left-6 md:translate-x-0 md:bottom-8 z-10 flex gap-2">
-        <div className="w-10 h-[2px] bg-white rounded-full" />
-        <div className="w-2 h-[2px] bg-white/30 rounded-full" />
-        <div className="w-2 h-[2px] bg-white/30 rounded-full" />
-      </div>
     </section>
   );
 }
