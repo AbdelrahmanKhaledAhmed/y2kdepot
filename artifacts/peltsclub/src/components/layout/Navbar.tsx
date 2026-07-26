@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
-import logoImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_54_47_ص_1785029551980.png";
+import logoImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_54_47_ص_1785029957644.png";
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -25,11 +25,8 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-full bg-[#c0c0c0] text-black text-xs md:text-sm font-bold tracking-[0.2em] text-center py-2 z-50 relative">
-        ✦ FREE SHIPPING ON ALL ORDERS OVER 699 EGP
-      </div>
       <header
-        className={`fixed top-[32px] md:top-[36px] left-0 w-full z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           isScrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#333]' : 'bg-transparent'
         }`}
       >
@@ -54,7 +51,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-1 md:w-1/3 flex justify-center">
             <Link href="/" className="flex items-center justify-center">
-              <img src={logoImg} alt="PELTSCLUB Logo" className="h-10 md:h-12 w-auto object-contain brightness-0 invert" />
+              <img src={logoImg} alt="PELTSCLUB Logo" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
             </Link>
           </div>
 
@@ -83,7 +80,7 @@ export default function Navbar() {
             className="fixed inset-0 z-50 bg-[#0a0a0a] flex flex-col"
           >
             <div className="flex items-center justify-between p-6 border-b border-[#222]">
-              <img src={logoImg} alt="PELTSCLUB" className="h-10 brightness-0 invert" />
+              <img src={logoImg} alt="PELTSCLUB" className="h-10 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
               <button onClick={() => setMobileMenuOpen(false)} className="text-white p-2">
                 <X className="w-8 h-8" />
               </button>

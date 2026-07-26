@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 pt-20">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 md:pt-20">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

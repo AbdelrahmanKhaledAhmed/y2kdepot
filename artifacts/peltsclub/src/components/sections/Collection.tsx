@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import logoImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_54_47_ص_1785029551980.png";
+import logoImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_54_47_ص_1785029957644.png";
 import beltImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_47_30_ص_1785029551981.png";
 
 const products = [
@@ -51,8 +51,8 @@ export default function Collection() {
           </motion.a>
         </div>
 
-        {/* Scroll on mobile, grid on desktop */}
-        <div className="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 md:gap-8 pb-8 md:pb-0 snap-x snap-mandatory">
+        {/* Grid on all sizes */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
           {products.map((product, idx) => (
             <motion.div
               key={product.id}
@@ -60,27 +60,31 @@ export default function Collection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.15, duration: 0.6 }}
-              className="group cursor-pointer min-w-[85vw] md:min-w-0 snap-start shrink-0"
+              className="group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] bg-[#111] mb-6 overflow-hidden border border-[#222] group-hover:border-[#555] transition-colors">
+              <div className="relative aspect-square sm:aspect-[4/5] bg-[#111] mb-4 overflow-hidden border border-[#222] group-hover:border-[#555] transition-colors">
                 {product.isNew && (
-                  <div className="absolute top-4 left-4 z-10 bg-white text-black text-xs font-bold px-3 py-1 tracking-widest">
+                  <div className="absolute top-3 left-3 z-10 bg-white text-black text-xs font-bold px-2 py-1 tracking-widest">
                     NEW
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end justify-center pb-8">
-                  <button className="bg-white text-black px-8 py-3 font-bold tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-[#c0c0c0]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end justify-center pb-6">
+                  <button className="bg-white text-black px-6 py-3 font-bold tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-[#c0c0c0]">
                     QUICK ADD
                   </button>
                 </div>
                 {product.image ? (
-                  <img 
-                    src={product.image} 
+                  <img
+                    src={product.image}
                     alt={product.name}
-                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${product.id === 1 ? 'object-contain p-12 brightness-0 invert opacity-50 group-hover:opacity-100' : ''}`}
+                    className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${
+                      product.id === 1
+                        ? 'object-contain p-8'
+                        : 'object-cover'
+                    }`}
                   />
                 ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center text-[#333] font-serif border-8 border-[#1a1a1a] p-8 text-center bg-[#0a0a0a]">
+                  <div className="w-full h-full flex flex-col items-center justify-center text-[#333] font-serif p-8 text-center bg-[#0a0a0a]">
                     <span className="text-4xl block mb-4">✦</span>
                     <span className="text-2xl tracking-widest opacity-50">TRIBAL FLAME</span>
                   </div>

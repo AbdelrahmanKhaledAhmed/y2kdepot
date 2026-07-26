@@ -3,9 +3,9 @@ import beltImg from "@assets/ChatGPT_Image_26_يوليو_2026،_03_47_30_ص_1785
 
 export default function BrandStatement() {
   return (
-    <section className="py-20 md:py-0 border-t border-[#222] bg-[#0a0a0a] overflow-hidden">
+    <section className="py-0 border-t border-[#222] bg-[#0a0a0a] overflow-hidden">
       <div className="flex flex-col md:flex-row min-h-[80vh]">
-        <div className="w-full md:w-1/2 relative min-h-[50vh] md:min-h-full">
+        <div className="w-full md:w-1/2 relative h-[55vw] md:h-auto md:min-h-full">
           <motion.div 
             initial={{ scale: 1.05 }}
             whileInView={{ scale: 1 }}
