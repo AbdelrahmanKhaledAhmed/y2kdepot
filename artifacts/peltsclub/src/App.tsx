@@ -6,6 +6,8 @@ import { Route, Switch, Router as WouterRouter } from 'wouter';
 import Home from '@/pages/home';
 import Checkout from '@/pages/checkout';
 import Product from '@/pages/product';
+import About from '@/pages/about';
+import Terms from '@/pages/terms';
 import { CartProvider } from '@/lib/cart';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -17,6 +19,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/product/:id" component={Product} />
       <Route path="/checkout" component={Checkout} />
+      <Route path="/about" component={About} />
+      <Route path="/terms" component={Terms} />
       <Route component={NotFound} />
     </Switch>
   );
