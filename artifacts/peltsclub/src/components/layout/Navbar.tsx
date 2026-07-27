@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
 
 const promos = [
-  'BUY 2 · GET THE 3RD FREE',
   'BUY 3 · GET 2 FREE',
 ];
 
