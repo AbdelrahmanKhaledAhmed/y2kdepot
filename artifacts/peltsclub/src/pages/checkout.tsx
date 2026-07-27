@@ -7,7 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
 export default function Checkout() {
-  const { items, total, clearCart } = useCart();
+  const { items, subtotal, discount, total, clearCart } = useCart();
   const [, navigate] = useLocation();
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -35,6 +35,8 @@ export default function Checkout() {
       `Address: ${form.address}\n` +
       `City: ${form.city}\n\n` +
       `Items:\n${orderLines}\n\n` +
+      `Subtotal: ${subtotal} EGP\n` +
+      (discount > 0 ? `Bundle Discount: -${discount} EGP\n` : '') +
       `Total: ${total} EGP`;
 
     if (botToken && chatId) {
@@ -185,6 +187,18 @@ export default function Checkout() {
               </div>
             ))}
           </div>
+          {discount > 0 && (
+            <div className="flex flex-col gap-2 mb-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="tracking-widest text-[#999999]">SUBTOTAL</span>
+                <span className="text-[#999999]">{subtotal} EGP</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="tracking-widest text-[#c0c0c0]">BUNDLE DISCOUNT</span>
+                <span className="text-[#c0c0c0]">-{discount} EGP</span>
+              </div>
+            </div>
+          )}
           <div className="flex items-center justify-between text-lg">
             <span className="tracking-widest text-[#999999] text-sm">TOTAL</span>
             <span className="font-bold">{total} EGP</span>
