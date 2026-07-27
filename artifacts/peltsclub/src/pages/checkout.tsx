@@ -60,7 +60,7 @@ export default function Checkout() {
     return (
       <main className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
         <Navbar />
-        <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-20">
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-[120px]">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -88,7 +88,7 @@ export default function Checkout() {
     return (
       <main className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
         <Navbar />
-        <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-20">
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-[120px]">
           <h1 className="text-3xl md:text-5xl font-serif mb-4">YOUR BAG IS EMPTY</h1>
           <button
             onClick={() => navigate('/')}
@@ -105,7 +105,7 @@ export default function Checkout() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <Navbar />
-      <div className="container mx-auto px-4 md:px-6 pt-32 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div className="container mx-auto px-4 md:px-6 pt-[168px] pb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Form */}
         <div>
           <h1 className="text-4xl md:text-5xl font-serif mb-8">CHECKOUT</h1>
