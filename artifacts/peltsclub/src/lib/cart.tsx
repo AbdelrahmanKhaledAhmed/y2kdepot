@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react';
+import { calcFreeCount } from './bundlePricing';
 
 export interface CartItem {
   cartId: string;
@@ -34,16 +35,6 @@ interface CartContextValue {
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
-
-// Best-value bundle math:
-// every 5 units -> 2 free (buy 3 get 2 free)
-// remaining units, every 3 -> 1 free (buy 2 get 1 free)
-function calcFreeCount(totalQty: number) {
-  const groupsOf5 = Math.floor(totalQty / 5);
-  const remainderAfter5 = totalQty % 5;
-  const groupsOf3 = Math.floor(remainderAfter5 / 3);
-  return groupsOf5 * 2 + groupsOf3 * 1;
-}
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
