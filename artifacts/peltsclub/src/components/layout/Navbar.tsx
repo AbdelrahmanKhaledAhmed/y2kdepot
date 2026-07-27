@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
-import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X } from 'lucide-react';
 import logoImg from "@assets/y2kdepot-logo.png";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
@@ -19,10 +19,8 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'SHOP', href: '#collection' },
-    { name: 'COLLECTIONS', href: '#' },
-    { name: 'ABOUT US', href: '#' },
-    { name: 'CONTACT', href: '#' },
+    { name: 'COLLECTIONS', href: '/#collection' },
+    { name: 'ABOUT US', href: '/about' },
   ];
 
   return (
@@ -64,7 +62,6 @@ export default function Navbar() {
           {/* Icons */}
           <div className="flex items-center justify-end gap-4 md:gap-6 text-white md:w-1/3 ml-auto md:ml-0 z-10">
             <button className="hover:text-[#c0c0c0] transition-colors"><Search className="w-5 h-5" /></button>
-            <button className="hidden md:block hover:text-[#c0c0c0] transition-colors"><User className="w-5 h-5" /></button>
             <button onClick={openCart} className="hover:text-[#c0c0c0] transition-colors relative">
               <ShoppingBag className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -103,11 +100,6 @@ export default function Navbar() {
                 </a>
               ))}
             </nav>
-            <div className="mt-auto p-8 border-t border-[#222]">
-              <button className="flex items-center gap-4 text-lg font-medium tracking-widest text-[#999999] hover:text-white transition-colors">
-                <User className="w-6 h-6" /> LOGIN / REGISTER
-              </button>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
