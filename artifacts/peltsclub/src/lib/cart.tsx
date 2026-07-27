@@ -32,6 +32,7 @@ interface CartContextValue {
   discount: number;
   total: number;
   count: number;
+  freeQtyById: Record<string, number>;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -95,7 +96,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
     () => items.reduce((sum, item) => sum + item.qty, 0),
     [items]
   );
-
+  const freeQtyById = useMemo(() => {
+    const units: { cartId: string; price: number }[] = [];
+    items.forEach((item) => {
+      for (let i = 0; i < item.qty; i++) units.push({ cartId: item.cartId, price: item.price });
+    });
+    units.sort((a, b) => b.price - a.price);
+    const freeCount = calcFreeCount(units.length);
+    const freeUnits = units.slice(units.length - freeCount);
+    const map: Record<string, number> = {};
+    freeUnits.forEach((u) => {
+      map[u.cartId] = (map[u.cartId] || 0) + 1;
+    });
+    return map;
+  }, [items]);
   return (
     <CartContext.Provider
       value={{
@@ -111,6 +125,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         discount,
         total,
         count,
+        freeQtyById,
       }}
     >
       {children}
