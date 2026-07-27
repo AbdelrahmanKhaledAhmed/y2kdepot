@@ -4,7 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
 
 export default function CartDrawer() {
-  const { items, isOpen, closeCart, removeItem, updateQty, total, freeQtyById } = useCart();
+  const { items, isOpen, closeCart, removeItem, updateQty, total, freeQtyById, count } = useCart();
+  const remainderToFree = count % 3;
+  const showNudge = remainderToFree === 2;
   const [, navigate] = useLocation();
 
   const handleCheckout = () => {
@@ -38,6 +40,12 @@ export default function CartDrawer() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-6">
+              {showNudge && (
+                <div className="mb-6 bg-green-500/10 border border-green-500 text-green-500 text-xs font-bold tracking-widest px-4 py-3 text-center">
+                  🎉 ADD 1 MORE ITEM TO GET IT FREE!
+                </div>
+              )}
+              {items.length === 0 ? (
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center text-[#666]">
                   <ShoppingBag className="w-12 h-12 mb-4 opacity-40" />
