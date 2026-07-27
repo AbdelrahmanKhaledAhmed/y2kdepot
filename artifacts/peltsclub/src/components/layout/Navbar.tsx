@@ -5,6 +5,37 @@ import logoImg from "@assets/y2kdepot-logo.png";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
 
+const promos = [
+  'BUY 2 · GET THE 3RD FREE',
+  'BUY 3 · GET 2 FREE',
+];
+
+function PromoBar() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="w-full h-10 overflow-hidden bg-white text-black flex items-center"
+    >
+      <div className="flex whitespace-nowrap animate-marquee">
+        {[0, 1].map((loop) => (
+          <div key={loop} className="flex items-center flex-shrink-0">
+            {promos.map((text, i) => (
+              <span
+                key={`${loop}-${i}`}
+                className="mx-6 md:mx-10 text-xs md:text-sm font-bold tracking-[0.2em]"
+              >
+                {text}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,52 +56,55 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className="fixed top-0 left-0 w-full z-40 border-b"
-        style={{
-          backgroundColor: isScrolled ? 'rgba(10,10,10,0.88)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(14px)' : 'none',
-          borderColor: isScrolled ? 'rgba(60,60,60,0.8)' : 'transparent',
-          transition: 'background-color 400ms ease, backdrop-filter 400ms ease, border-color 400ms ease',
-        }}
-      >
-        <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between relative">
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-white p-2 -ml-2 z-10"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-[0.15em] text-[#999999] w-1/3">
-            {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="hover:text-white transition-colors duration-300">
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* Logo — absolutely centered on mobile, flex-centered on desktop */}
-          <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:flex-1 md:w-1/3 flex justify-center">
-            <Link href="/" className="flex items-center justify-center">
-              <img src={logoImg} alt="Y2K DEPOT Logo" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
-            </Link>
-          </div>
-
-          {/* Icons */}
-          <div className="flex items-center justify-end gap-4 md:gap-6 text-white md:w-1/3 ml-auto md:ml-0 z-10">
-            <button className="hover:text-[#c0c0c0] transition-colors"><Search className="w-5 h-5" /></button>
-            <button onClick={openCart} className="hover:text-[#c0c0c0] transition-colors relative">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                {count}
-              </span>
+      <div className="fixed top-0 left-0 w-full z-40">
+        <PromoBar />
+        <header
+          className="w-full border-b"
+          style={{
+            backgroundColor: isScrolled ? 'rgba(10,10,10,0.88)' : 'transparent',
+            backdropFilter: isScrolled ? 'blur(14px)' : 'none',
+            borderColor: isScrolled ? 'rgba(60,60,60,0.8)' : 'transparent',
+            transition: 'background-color 400ms ease, backdrop-filter 400ms ease, border-color 400ms ease',
+          }}
+        >
+          <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between relative">
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="md:hidden text-white p-2 -ml-2 z-10"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="w-6 h-6" />
             </button>
+
+            {/* Desktop Nav Links */}
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-[0.15em] text-[#999999] w-1/3">
+              {navLinks.map((link) => (
+                <a key={link.name} href={link.href} className="hover:text-white transition-colors duration-300">
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* Logo — absolutely centered on mobile, flex-centered on desktop */}
+            <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:flex-1 md:w-1/3 flex justify-center">
+              <Link href="/" className="flex items-center justify-center">
+                <img src={logoImg} alt="Y2K DEPOT Logo" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(192,192,192,0.4))' }} />
+              </Link>
+            </div>
+
+            {/* Icons */}
+            <div className="flex items-center justify-end gap-4 md:gap-6 text-white md:w-1/3 ml-auto md:ml-0 z-10">
+              <button className="hover:text-[#c0c0c0] transition-colors"><Search className="w-5 h-5" /></button>
+              <button onClick={openCart} className="hover:text-[#c0c0c0] transition-colors relative">
+                <ShoppingBag className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {count}
+                </span>
+              </button>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
