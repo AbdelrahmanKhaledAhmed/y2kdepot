@@ -178,11 +178,18 @@ export default function Product() {
                   return (
                     <div
                       key={idx}
-                      className={`px-3 py-2 border text-xs font-bold tracking-wider ${
+                      className={`px-3 py-2 border text-xs font-bold tracking-wider flex items-center gap-1.5 ${
                         isFree ? 'border-green-500 text-green-500' : 'border-[#333] text-white'
                       }`}
                     >
-                      {isFree ? 'FREE' : `${product.price} EGP`}
+                      {isFree ? (
+                        <>
+                          <span className="line-through text-[#666]">{product.price} EGP</span>
+                          <span>FREE</span>
+                        </>
+                      ) : (
+                        `${product.price} EGP`
+                      )}
                     </div>
                   );
                 })}
