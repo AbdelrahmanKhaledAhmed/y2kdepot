@@ -64,15 +64,19 @@ export default function CartDrawer() {
                         <div>
                           <h3 className="text-sm font-bold tracking-wider text-white mb-1">{item.name}</h3>
                           <p className="text-[#666] text-xs tracking-widest mb-1">SIZE {item.size}</p>
-                          <p className="text-[#999999] text-sm tracking-widest">
-                            {item.price} EGP
-                            {freeQtyById[item.cartId] > 0 && (
-                              <span className="text-green-500 font-bold ml-2">
-                                {freeQtyById[item.cartId]} FREE
-                              </span>
+                          <p className="text-[#999999] text-sm tracking-widest flex items-center gap-2 flex-wrap">
+                            {freeQtyById[item.cartId] > 0 ? (
+                              <>
+                                <span className="line-through text-[#666]">{item.price} EGP</span>
+                                <span className="text-green-500 font-bold">
+                                  {freeQtyById[item.cartId]} FREE
+                                </span>
+                              </>
+                            ) : (
+                              <span>{item.price} EGP</span>
                             )}
                             {freeQtyById[item.cartId] === undefined && oneMoreUnlocksFree && (
-                              <span className="text-green-500 font-bold ml-2 text-xs">
+                              <span className="text-green-500 font-bold text-xs">
                                 NEXT ITEM FREE!
                               </span>
                             )}
