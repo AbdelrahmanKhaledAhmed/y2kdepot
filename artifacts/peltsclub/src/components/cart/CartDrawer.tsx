@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
 
 export default function CartDrawer() {
-  const { items, isOpen, closeCart, removeItem, updateQty, total } = useCart();
+  const { items, isOpen, closeCart, removeItem, updateQty, total, freeQtyById } = useCart();
   const [, navigate] = useLocation();
 
   const handleCheckout = () => {
@@ -54,7 +54,14 @@ export default function CartDrawer() {
                         <div>
                           <h3 className="text-sm font-bold tracking-wider text-white mb-1">{item.name}</h3>
                           <p className="text-[#666] text-xs tracking-widest mb-1">SIZE {item.size}</p>
-                          <p className="text-[#999999] text-sm tracking-widest">{item.price} EGP</p>
+                          <p className="text-[#999999] text-sm tracking-widest">
+                            {item.price} EGP
+                            {freeQtyById[item.cartId] > 0 && (
+                              <span className="text-green-500 font-bold ml-2">
+                                {freeQtyById[item.cartId]} FREE
+                              </span>
+                            )}
+                          </p>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center border border-[#333]">
