@@ -10,13 +10,12 @@ export default function Checkout() {
   const { items, total, clearCart } = useCart();
   const [, navigate] = useLocation();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', address: '', city: '' });
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
   };
-
-  const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,7 +105,10 @@ export default function Checkout() {
       <Navbar />
       <div className="container mx-auto px-4 md:px-6 pt-32 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Form */}
-        <div className="grid grid-cols-2 gap-4">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-serif mb-8">CHECKOUT</h1>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs tracking-widest text-[#999999] mb-2">FIRST NAME</label>
                 <input
