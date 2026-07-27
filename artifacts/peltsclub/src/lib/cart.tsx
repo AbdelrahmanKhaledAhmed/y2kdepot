@@ -27,11 +27,23 @@ interface CartContextValue {
   removeItem: (cartId: string) => void;
   updateQty: (cartId: string, qty: number) => void;
   clearCart: () => void;
+  subtotal: number;
+  discount: number;
   total: number;
   count: number;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
+
+// Best-value bundle math:
+// every 5 units -> 2 free (buy 3 get 2 free)
+// remaining units, every 3 -> 1 free (buy 2 get 1 free)
+function calcFreeCount(totalQty: number) {
+  const groupsOf5 = Math.floor(totalQty / 5);
+  const remainderAfter5 = totalQty % 5;
+  const groupsOf3 = Math.floor(remainderAfter5 / 3);
+  return groupsOf5 * 2 + groupsOf3 * 1;
+}
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -67,10 +79,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = useCallback(() => setItems([]), []);
 
-  const total = useMemo(
+  const subtotal = useMemo(
     () => items.reduce((sum, item) => sum + item.price * item.qty, 0),
     [items]
   );
+
+  const total = useMemo(() => {
+    // expand into individual priced units
+    const units: number[] = [];
+    items.forEach((item) => {
+      for (let i = 0; i < item.qty; i++) units.push(item.price);
+    });
+    // most expensive units are the ones the customer pays for
+    units.sort((a, b) => b - a);
+
+    const freeCount = calcFreeCount(units.length);
+    const paidUnits = units.slice(0, units.length - freeCount);
+    return paidUnits.reduce((sum, price) => sum + price, 0);
+  }, [items]);
+
+  const discount = subtotal - total;
 
   const count = useMemo(
     () => items.reduce((sum, item) => sum + item.qty, 0),
@@ -79,7 +107,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ items, isOpen, openCart, closeCart, addItem, removeItem, updateQty, clearCart, total, count }}
+      value={{
+        items,
+        isOpen,
+        openCart,
+        closeCart,
+        addItem,
+        removeItem,
+        updateQty,
+        clearCart,
+        subtotal,
+        discount,
+        total,
+        count,
+      }}
     >
       {children}
     </CartContext.Provider>
