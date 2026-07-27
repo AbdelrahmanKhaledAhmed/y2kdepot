@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import { products } from '@/data/products';
+import PromoBar from './PromoBar';
 
 export default function Collection() {
   return (
     <section id="collection" className="py-20 md:py-32 bg-[#0a0a0a]">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -24,6 +25,10 @@ export default function Collection() {
             VIEW ALL 
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </motion.a>
+        </div>
+
+        <div className="mb-12">
+          <PromoBar />
         </div>
 
         {/* Grid on all sizes */}
@@ -50,8 +55,10 @@ export default function Collection() {
                   />
                 </div>
                 <div className="px-1">
-                  <h3 className="text-lg font-bold tracking-wider text-white mb-2">{product.name}</h3>
-                  <p className="text-[#999999] font-medium tracking-widest">{product.price} EGP</p>
+                  <h3 className="text-lg font-bold tracking-wider text-white mb-1">{product.name}</h3>
+                  <p className="text-[#666] text-xs tracking-widest group-hover:text-[#c0c0c0] transition-colors">
+                    VIEW PRICE →
+                  </p>
                 </div>
               </motion.div>
             </Link>
