@@ -21,11 +21,11 @@ export interface ProductData {
 export const SIZES = ['100', '110', '120'];
 
 export const products: ProductData[] = [
-  { id: 1, name: "FLAME BUCKLE BELT", price: 400, images: [p1, p1b], sizes: SIZES, isNew: true },
-  { id: 2, name: "OVAL SWIRL BELT", price: 400, images: [p2, p2b], sizes: SIZES, isNew: true },
-  { id: 3, name: "DRAGON WING BELT", price: 400, images: [p3, p3b], sizes: SIZES, isNew: true },
-  { id: 4, name: "TRIBAL WING BELT", price: 400, images: [p4, p4b], sizes: SIZES, isNew: true },
-  { id: 5, name: "BLADE BUCKLE BELT", price: 400, images: [p5, p5b], sizes: SIZES, isNew: true },
+  { id: 1, name: "FLAME BUCKLE BELT", price: 450, images: [p1, p1b], sizes: SIZES, isNew: true },
+  { id: 2, name: "OVAL SWIRL BELT", price: 450, images: [p2, p2b], sizes: SIZES, isNew: true },
+  { id: 3, name: "DRAGON WING BELT", price: 450, images: [p3, p3b], sizes: SIZES, isNew: true },
+  { id: 4, name: "TRIBAL WING BELT", price: 450, images: [p4, p4b], sizes: SIZES, isNew: true },
+  { id: 5, name: "BLADE BUCKLE BELT", price: 450, images: [p5, p5b], sizes: SIZES, isNew: true },
 ];
 
 export function getProductById(id: number): ProductData | undefined {
