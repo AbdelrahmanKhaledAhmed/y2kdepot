@@ -10,7 +10,7 @@ export default function Checkout() {
   const { items, total, clearCart } = useCart();
   const [, navigate] = useLocation();
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', phone: '', address: '', city: '' });
+  const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', address: '', city: '' });
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
@@ -31,7 +31,7 @@ export default function Checkout() {
 
     const message =
       `🛍️ NEW ORDER\n\n` +
-      `Name: ${form.name}\n` +
+      `Name: ${form.firstName} ${form.lastName}\n` +
       `Phone: ${form.phone}\n` +
       `Address: ${form.address}\n` +
       `City: ${form.city}\n\n` +
@@ -106,17 +106,25 @@ export default function Checkout() {
       <Navbar />
       <div className="container mx-auto px-4 md:px-6 pt-32 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Form */}
-        <div>
-          <h1 className="text-4xl md:text-5xl font-serif mb-8">CHECKOUT</h1>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <div>
-              <label className="block text-xs tracking-widest text-[#999999] mb-2">FULL NAME</label>
-              <input
-                required
-                value={form.name}
-                onChange={handleChange('name')}
-                className="w-full bg-transparent border border-[#333] px-4 py-3 text-white focus:border-[#c0c0c0] outline-none transition-colors"
-              />
+        <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs tracking-widest text-[#999999] mb-2">FIRST NAME</label>
+                <input
+                  required
+                  value={form.firstName}
+                  onChange={handleChange('firstName')}
+                  className="w-full bg-transparent border border-[#333] px-4 py-3 text-white focus:border-[#c0c0c0] outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs tracking-widest text-[#999999] mb-2">LAST NAME</label>
+                <input
+                  required
+                  value={form.lastName}
+                  onChange={handleChange('lastName')}
+                  className="w-full bg-transparent border border-[#333] px-4 py-3 text-white focus:border-[#c0c0c0] outline-none transition-colors"
+                />
+              </div>
             </div>
             <div>
               <label className="block text-xs tracking-widest text-[#999999] mb-2">PHONE NUMBER</label>
