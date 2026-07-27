@@ -71,6 +71,11 @@ export default function CartDrawer() {
                                 {freeQtyById[item.cartId]} FREE
                               </span>
                             )}
+                            {freeQtyById[item.cartId] === undefined && oneMoreUnlocksFree && (
+                              <span className="text-green-500 font-bold ml-2 text-xs">
+                                NEXT ITEM FREE!
+                              </span>
+                            )}
                           </p>
                         </div>
                         <div className="flex items-center justify-between">
