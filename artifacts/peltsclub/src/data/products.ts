@@ -1,13 +1,13 @@
 import p1 from "@assets/p1.png";
-import p1b from "@assets/p1-2.png";
+import p1b from "@assets/p1-2.jpg";
 import p2 from "@assets/p2.png";
-import p2b from "@assets/p2-2.png";
+import p2b from "@assets/p2-2.jpg";
 import p3 from "@assets/p3.png";
-import p3b from "@assets/p3-2.png";
+import p3b from "@assets/p3-2.jpg";
 import p4 from "@assets/p4.png";
-import p4b from "@assets/p4-2.png";
+import p4b from "@assets/p4-2.jpg";
 import p5 from "@assets/p5.png";
-import p5b from "@assets/p5-2.png";
+import p5b from "@assets/p5-2.jpg";
 
 export interface ProductData {
   id: number;
