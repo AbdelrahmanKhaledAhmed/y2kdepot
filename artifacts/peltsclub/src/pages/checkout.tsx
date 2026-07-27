@@ -16,8 +16,41 @@ export default function Checkout() {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSending(true);
+
+    const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+    const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+    const orderLines = items
+      .map((item) => `• ${item.name} (Size ${item.size}) x${item.qty} — ${item.price * item.qty} EGP`)
+      .join('\n');
+
+    const message =
+      `🛍️ NEW ORDER\n\n` +
+      `Name: ${form.name}\n` +
+      `Phone: ${form.phone}\n` +
+      `Address: ${form.address}\n` +
+      `City: ${form.city}\n\n` +
+      `Items:\n${orderLines}\n\n` +
+      `Total: ${total} EGP`;
+
+    if (botToken && chatId) {
+      try {
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, text: message }),
+        });
+      } catch (err) {
+        console.error('Failed to send Telegram notification', err);
+      }
+    }
+
+    setSending(false);
     setSubmitted(true);
     clearCart();
   };
@@ -115,9 +148,10 @@ export default function Checkout() {
             </div>
             <button
               type="submit"
-              className="mt-4 w-full bg-white text-black py-4 font-bold tracking-[0.2em] text-sm hover:bg-[#c0c0c0] transition-colors"
+              disabled={sending}
+              className="mt-4 w-full bg-white text-black py-4 font-bold tracking-[0.2em] text-sm hover:bg-[#c0c0c0] transition-colors disabled:opacity-50"
             >
-              PLACE ORDER — CASH ON DELIVERY
+              {sending ? 'PLACING ORDER...' : 'PLACE ORDER — CASH ON DELIVERY'}
             </button>
           </form>
         </div>
