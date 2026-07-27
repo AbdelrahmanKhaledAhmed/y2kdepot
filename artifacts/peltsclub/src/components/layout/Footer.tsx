@@ -14,20 +14,10 @@ export default function Footer() {
           <a href="/terms" className="hover:text-white transition-colors">TERMS</a>
         </nav>
         <div className="flex items-center gap-6 mb-10">
-          
-            href="https://www.instagram.com/y2kdepot.eg?igsh=MTl2cXM0ZzZsbmlxbA%3D%3D&utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#999999] hover:text-white transition-colors"
-          >
+          <a href="https://www.instagram.com/y2kdepot.eg?igsh=MTl2cXM0ZzZsbmlxbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-[#999999] hover:text-white transition-colors">
             <Instagram className="w-6 h-6" />
           </a>
-          
-            href="https://www.tiktok.com/@y2kdepot.eg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#999999] hover:text-white transition-colors"
-          >
+          <a href="https://www.tiktok.com/@y2kdepot.eg" target="_blank" rel="noopener noreferrer" className="text-[#999999] hover:text-white transition-colors">
             <FaTiktok className="w-6 h-6" />
           </a>
         </div>
