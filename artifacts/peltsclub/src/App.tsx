@@ -7,6 +7,7 @@ import Home from '@/pages/home';
 import Checkout from '@/pages/checkout';
 import Product from '@/pages/product';
 import { CartProvider } from '@/lib/cart';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
       <TooltipProvider>
         <CartProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+            <ScrollToTop />
             <Router />
           </WouterRouter>
           <Toaster />
